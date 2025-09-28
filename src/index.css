@@ -82,3 +82,7 @@ header.topbar{
   header.topbar{padding:12px}
   .slideshow{height:220px}
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

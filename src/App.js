@@ -8,6 +8,8 @@ import LoginModal from './components/LoginModal';
 import LoginSignup from "./components/LoginSignup";
 import Chatbot from './components/Chatbot';
 import { useTranslation } from 'react-i18next';
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Slideshow from "./components/Slideshow";
@@ -25,6 +27,8 @@ function App() {
           <main className="container">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="/course/:id" element={<CourseDetail />} />
               <Route path="/interactive" element={<ComingSoon />} />
               <Route path="/account" element={<Account />} />

@@ -1,86 +1,64 @@
-import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+  
 
-const ALL_COURSES = [
-  { id: '1', name: 'Mathematics - Class 1', description:'Basic numeracy and shapes.' },
-  { id: '2', name: 'Science - Class 2', description:'Introduction to plants and animals.' },
-  { id: '3', name: 'English - Class 3', description:'Reading and grammar basics.' },
-  { id: '4', name: 'Math - Class 4', description:'Arithmetic and fractions.' },
-  { id: '5', name: 'Science - Class 5', description:'Forces and the environment.' },
-  { id: '6', name: 'Math - Class 6', description:'Decimals and ratios.' },
-  { id: '7', name: 'Science - Class 7', description:'Cells and organisms.' },
-  { id: '8', name: 'General Knowledge - Class 8', description:'World and science overview.' }
-];
-
-export default function Home(){
-  const { t } = useTranslation();
-  const [q, setQ] = useState('');
-  const filtered = useMemo(()=> ALL_COURSES.filter(c => c.name.toLowerCase().includes(q.toLowerCase())), [q]);
+function Home() {
   return (
-    <>
-    <header>
-        <img src="/logo.png" alt="Logo" style={{ height: "50px" }} />
-        <nav>
-          <Link to="/">Home</Link>
-          <div>
-            Courses
-            <ul>
-              {courses.map(course => (
-                <li key={course.id}>
-                  <Link to={`/course/${course.id}`}>{course.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Link to="/interactive">Interactive Simulations/Games</Link>
-          <Link to="/account">Account</Link>
-        </nav>
-      </header>
-      <div className="search-row">
-        <input type="search" placeholder={t('Search courses...')} value={q} onChange={e=>setQ(e.target.value)} />
-      </div>
-
-      <div className="slideshow section" aria-hidden>
-        <img className="slide-img" src="/slide1.jpg" alt="Slide 1" onError={e=>{e.target.src='https://via.placeholder.com/1200x320?text=Slide+1'}} />
-      </div>
-
-      <section className="section">
-        <h2>{t('Our Vision')}</h2>
-        <p>Empowering rural students with accessible education.</p>
+    <div className="font-sans">
+      {/* Hero */}
+      <section className="bg-blue-600 text-white text-center py-16">
+        <h1 className="text-4xl font-bold mb-4">Empowering Rural Students</h1>
+        <p className="text-lg mb-6">Accessible education for every child.</p>
+        <div>
+          <button className="bg-white text-blue-600 px-6 py-2 rounded-lg mr-4 hover:bg-gray-100">
+            Explore Courses
+          </button>
+          <button className="bg-yellow-400 text-blue-900 px-6 py-2 rounded-lg hover:bg-yellow-500">
+            Join Now
+          </button>
+        </div>
       </section>
 
-      <section className="section">
-        <h2>{t('Popular Courses')}</h2>
-        <div className="card-grid">
-          {filtered.map(c => (
-            <div className="course-card" key={c.id}>
-              <h3><Link to={`/course/${c.id}`}>{c.name}</Link></h3>
-              <p>{c.description}</p>
+      {/* Courses */}
+      <section className="py-12 px-6">
+        <h2 className="text-2xl font-bold text-center mb-8">Popular Courses</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {["Class 1", "Class 2", "Class 3"].map((course, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-lg rounded-lg p-6 text-center hover:shadow-2xl transition"
+            >
+              <h3 className="text-xl font-semibold mb-2">{course}</h3>
+              <p className="text-gray-600 mb-4">Interactive lessons & quizzes</p>
+              <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Start Learning
+              </button>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="section">
-        <h2>{t('Why Choose Us?')}</h2>
-        <p>Quality education, offline access, multi-language support.</p>
+      {/* Why Choose Us */}
+      <section className="bg-gray-100 py-12 px-6">
+        <h2 className="text-2xl font-bold text-center mb-8">Why Choose Us?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div>
+            <span className="text-4xl">🎓</span>
+            <h3 className="font-semibold mt-2">Quality Education</h3>
+            <p className="text-gray-600">Engaging and structured learning.</p>
+          </div>
+          <div>
+            <span className="text-4xl">📱</span>
+            <h3 className="font-semibold mt-2">Offline Access</h3>
+            <p className="text-gray-600">Learn anytime, anywhere.</p>
+          </div>
+          <div>
+            <span className="text-4xl">🌐</span>
+            <h3 className="font-semibold mt-2">Multi-language</h3>
+            <p className="text-gray-600">Content in regional languages.</p>
+          </div>
+        </div>
       </section>
-
-      <section className="section contact">
-        <h2>{t('Contact Us')}</h2>
-        <p>Email: info@edurural.example</p>
-      </section>
-
-      <section className="section faq">
-        <h2>{t('FAQs')}</h2>
-        <p>{t('Coming soon!')}</p>
-      </section>
-
-      <footer>
-        <p>© 2025 Your Website. All rights reserved.</p>
-        <p>Follow us on social media: Facebook | Twitter | Instagram</p>
-      </footer>
-    </>
+    </div>
   );
 }
+
+export default Home;
