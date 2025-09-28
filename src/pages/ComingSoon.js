@@ -1,13 +1,9 @@
-// src/pages/ComingSoon.js
 import React from 'react';
-
-const ComingSoon = () => {
+export default function ComingSoon(){
   return (
-    <div className="main-content">
+    <div className="section">
       <h1>Interactive Simulations / Games</h1>
-      <p>This feature is coming soon!</p>
+      <p>Coming soon — educational interactive content will appear here.</p>
     </div>
   );
-};
-
-export default ComingSoon;
+}

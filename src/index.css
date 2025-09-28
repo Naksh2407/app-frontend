@@ -1,129 +1,84 @@
-/* src/index.css */
-
-/* Reset some default styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+:root{
+  --primary:#1e3a8a;
+  --accent:#2346b0;
+  --muted:#6b7280;
+  --bg:#f3f6fb;
+  --card:#ffffff;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f7fa;
-  color: #333;
-  line-height: 1.6;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-a {
-  text-decoration: none;
-  color: #333;
+/* Header */
+header.topbar{
+  background:var(--primary);
+  color:white;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
-
-header {
-  background-color: #1e3a8a;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.topbar .left{
+  display:flex;align-items:center;gap:16px;
 }
-
-header .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+.logo{
+  display:flex;align-items:center;gap:8px;
 }
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+.logo img{height:44px;width:auto;border-radius:6px}
+.site-title{font-weight:700;font-size:1.15rem}
+.nav{
+  display:flex;gap:18px;align-items:center;
 }
-
-nav ul li {
-  cursor: pointer;
+.nav .courses-dropdown{position:relative}
+.nav a, .nav button{color:white;background:transparent;border:0;cursor:pointer;font-weight:500}
+.courses-menu{
+  position:absolute;top:36px;left:0;background:var(--card);color:#111;border-radius:6px;padding:8px;box-shadow:0 6px 18px rgba(0,0,0,0.12);display:none;
 }
+.courses-menu a{display:block;padding:6px 10px;color:#111;border-radius:4px;text-decoration:none}
+.courses-dropdown:hover .courses-menu{display:block}
 
-button {
-  background-color: #1e3a8a;
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-}
+/* Layout */
+.container{max-width:1100px;margin:18px auto;padding:0 18px}
+.search-row{display:flex;gap:12px;align-items:center;margin:10px 0}
+.search-row input[type="search"]{flex:1;padding:8px 12px;border-radius:6px;border:1px solid #e5e7eb}
 
-button:hover {
-  background-color: #334ea1;
-}
+/* Slideshow */
+.slideshow{width:100%;height:320px;border-radius:8px;overflow:hidden;background:#dbeafe;display:flex;align-items:center;justify-content:center}
+.slide-img{width:100%;height:100%;object-fit:cover}
 
-.main-content {
-  padding: 20px;
-}
+/* Sections */
+.section{margin:28px 0}
+.section h2{color:var(--primary);margin-bottom:8px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
 
-.section {
-  margin-bottom: 40px;
-}
+/* Course card */
+.course-card{background:var(--card);padding:14px;border-radius:8px;box-shadow:0 6px 18px rgba(14,30,37,0.06);display:flex;flex-direction:column;gap:8px}
+.course-card h3{margin:0;font-size:1.05rem}
+.course-card p{margin:0;color:var(--muted);font-size:0.95rem}
 
-.section h2 {
-  margin-bottom: 15px;
-  color: #1e3a8a;
-}
+/* Footer */
+.footer{background:var(--primary);color:white;padding:18px;text-align:center;border-top-left-radius:6px;border-top-right-radius:6px;margin-top:28px}
 
-.course-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  padding: 15px;
-  margin: 10px;
-  transition: transform 0.2s ease;
-}
+/* Login modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:flex;align-items:center;justify-content:center}
+.modal{background:white;padding:18px;border-radius:10px;width:320px;box-shadow:0 12px 30px rgba(0,0,0,0.2)}
 
-.course-card:hover {
-  transform: translateY(-5px);
-}
+/* Chatbot */
+.chatbot{position:fixed;right:18px;bottom:18px;width:320px;max-width:90%;background:var(--card);border-radius:8px;box-shadow:0 8px 28px rgba(2,6,23,0.12);padding:10px}
+.chatbot .msgs{max-height:180px;overflow:auto;padding:6px}
+.chatbot .input-row{display:flex;gap:8px;margin-top:8px}
+.chatbot input{flex:1;padding:8px;border-radius:6px;border:1px solid #e5e7eb}
 
-.slideshow img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.contact, .faq {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #1e3a8a;
-  color: white;
-}
-
-.chatbot {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  border: 1px solid #ccc;
-  background-color: white;
-  width: 300px;
-  max-width: 90%;
-  border-radius: 8px;
-  padding: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.chatbot input {
-  width: calc(100% - 60px);
-  padding: 8px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.chatbot button {
-  width: 50px;
-  margin-top: 10px;
+/* Responsive */
+@media (max-width:720px){
+  .nav{display:none}
+  header.topbar{padding:12px}
+  .slideshow{height:220px}
 }

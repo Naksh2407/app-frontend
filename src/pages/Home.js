@@ -1,20 +1,25 @@
-import { Link } from "react-router-dom";
+import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const courses = [
-  { id: "1", name: "Class 1" },
-  { id: "2", name: "Class 2" },
-  { id: "3", name: "Class 3" },
-  { id: "4", name: "Class 4" },
-  { id: "5", name: "Class 5" },
-  { id: "6", name: "Class 6" },
-  { id: "7", name: "Class 7" },
-  { id: "8", name: "Class 8" },
+const ALL_COURSES = [
+  { id: '1', name: 'Mathematics - Class 1', description:'Basic numeracy and shapes.' },
+  { id: '2', name: 'Science - Class 2', description:'Introduction to plants and animals.' },
+  { id: '3', name: 'English - Class 3', description:'Reading and grammar basics.' },
+  { id: '4', name: 'Math - Class 4', description:'Arithmetic and fractions.' },
+  { id: '5', name: 'Science - Class 5', description:'Forces and the environment.' },
+  { id: '6', name: 'Math - Class 6', description:'Decimals and ratios.' },
+  { id: '7', name: 'Science - Class 7', description:'Cells and organisms.' },
+  { id: '8', name: 'General Knowledge - Class 8', description:'World and science overview.' }
 ];
 
-function Home() {
+export default function Home(){
+  const { t } = useTranslation();
+  const [q, setQ] = useState('');
+  const filtered = useMemo(()=> ALL_COURSES.filter(c => c.name.toLowerCase().includes(q.toLowerCase())), [q]);
   return (
-    <div>
-      <header>
+    <>
+    <header>
         <img src="/logo.png" alt="Logo" style={{ height: "50px" }} />
         <nav>
           <Link to="/">Home</Link>
@@ -32,50 +37,50 @@ function Home() {
           <Link to="/account">Account</Link>
         </nav>
       </header>
-
-      <input type="text" placeholder="Search courses..." />
-
-      <div>
-        {/* Slideshow */}
-        <img src="/slide1.jpg" alt="Slide 1" />
-        <img src="/slide2.jpg" alt="Slide 2" />
+      <div className="search-row">
+        <input type="search" placeholder={t('Search courses...')} value={q} onChange={e=>setQ(e.target.value)} />
       </div>
 
-      <section>
-        <h2>Our Vision/Mission/Moto</h2>
+      <div className="slideshow section" aria-hidden>
+        <img className="slide-img" src="/slide1.jpg" alt="Slide 1" onError={e=>{e.target.src='https://via.placeholder.com/1200x320?text=Slide+1'}} />
+      </div>
+
+      <section className="section">
+        <h2>{t('Our Vision')}</h2>
         <p>Empowering rural students with accessible education.</p>
       </section>
 
-      <section>
-        <h2>Popular Courses</h2>
-        {courses.slice(0, 3).map(course => (
-          <div key={course.id}>
-            <Link to={`/course/${course.id}`}>{course.name}</Link>
-          </div>
-        ))}
+      <section className="section">
+        <h2>{t('Popular Courses')}</h2>
+        <div className="card-grid">
+          {filtered.map(c => (
+            <div className="course-card" key={c.id}>
+              <h3><Link to={`/course/${c.id}`}>{c.name}</Link></h3>
+              <p>{c.description}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section>
-        <h2>Why Choose Us?</h2>
+      <section className="section">
+        <h2>{t('Why Choose Us?')}</h2>
         <p>Quality education, offline access, multi-language support.</p>
       </section>
 
-      <section>
-        <h2>Contact Us</h2>
-        <p>Email: info@example.com</p>
+      <section className="section contact">
+        <h2>{t('Contact Us')}</h2>
+        <p>Email: info@edurural.example</p>
       </section>
 
-      <section>
-        <h2>FAQs</h2>
-        <p>Coming soon!</p>
+      <section className="section faq">
+        <h2>{t('FAQs')}</h2>
+        <p>{t('Coming soon!')}</p>
       </section>
 
       <footer>
         <p>© 2025 Your Website. All rights reserved.</p>
         <p>Follow us on social media: Facebook | Twitter | Instagram</p>
       </footer>
-    </div>
+    </>
   );
 }
-
-export default Home;

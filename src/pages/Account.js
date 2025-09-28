@@ -1,13 +1,9 @@
-// src/pages/Account.js
 import React from 'react';
-
-const Account = () => {
+export default function Account(){
   return (
-    <div className="main-content">
-      <h1>User Account</h1>
-      <p>This is where user account details will be displayed.</p>
+    <div className="section">
+      <h1>Account</h1>
+      <p>Profile info and enrolled courses will be shown here once authentication is integrated.</p>
     </div>
   );
-};
-
-export default Account;
+}
